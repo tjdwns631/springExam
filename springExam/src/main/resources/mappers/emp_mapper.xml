@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.company.app.controller.SungjunMapper1">
+
+<!-- 상품조회  -->
+<select id="proselect" parameterType="ProductVO" resultType="ProductVO">
+	select product_id,product_name,product_price,
+	product_info,to_char(product_date,'YYYY-MM-DD') product_date,
+company,manager_id 
+from product_tbl_10
+</select>
+<!--상품 등록 -->
+<insert id="insertpro">
+	insert into product_tbl_10 
+	values((select  max(product_id)+1 from product_tbl_10),#{product_name},
+	#{product_price},#{product_info},
+	#{product_date},#{company},#{manager_id})
+</insert>
+</mapper>
